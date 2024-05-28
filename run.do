@@ -24,7 +24,7 @@ coverage exclude -src ../../tinyalu_dut/single_cycle_add_and_xor.vhd -scope /top
 coverage save random_test.ucdb
 
 
-vsim top_optimized -coverage +UVM_TESTNAME=add_test
+vsim top_optimized -coverage +UVM_TESTNAME=add_test -l vsim.log
 
 set NoQuitOnFinish 1
 onbreak {resume}
