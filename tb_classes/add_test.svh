@@ -42,6 +42,7 @@ class add_test extends uvm_test;
       join_none
 
       add_tester_h.execute();
+      $display("Start random_tester at %t",$realtime);
       phase.drop_objection(this);
    endtask : run_phase
 

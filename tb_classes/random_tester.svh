@@ -60,8 +60,11 @@ class random_tester;
          iA = get_data();
          iB = get_data();
          bfm.send_op(iA, iB, op_set, result);
+         
       end : random_loop
+      
       #500;
+      $display("Start random_tester at %t",$realtime);
    endtask : execute
 
 endclass : random_tester

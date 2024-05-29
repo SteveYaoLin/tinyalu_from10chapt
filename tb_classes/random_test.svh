@@ -42,6 +42,7 @@ class random_test extends uvm_test;
       join_none
 
       random_tester_h.execute();
+      
       phase.drop_objection(this);
    endtask : run_phase
 
