@@ -28,15 +28,6 @@ interface tinyalu_bfm;
 
    assign op = op_set;
 
-   initial begin
-      clk = 0;
-      forever begin
-         #10;
-         clk = ~clk;
-      end
-   end
-
-
    task reset_alu();
       reset_n = 1'b0;
       @(negedge clk);
@@ -45,11 +36,12 @@ interface tinyalu_bfm;
       start = 1'b0;
    endtask : reset_alu
    
-  task send_op(input byte iA, input byte iB, input operation_t iop, output shortint alu_result);
-     
+
+
+   task send_op(input byte iA, input byte iB, input operation_t iop, shortint alu_result);
       if (iop == rst_op) begin
          @(negedge clk);
-         op_set = iop;         
+         op_set = iop;
          @(posedge clk);
          reset_n = 1'b0;
          start = 1'b0;
@@ -70,12 +62,21 @@ interface tinyalu_bfm;
             do
               @(negedge clk);
             while (done == 0);
+            alu_result = result;
             start = 1'b0;
          end
-         alu_result = result;
       end // else: !if(iop == rst_op)
       
    endtask : send_op
+
+   initial begin
+      clk = 0;
+      forever begin
+         #10;
+         clk = ~clk;
+      end
+   end
+
 
 endinterface : tinyalu_bfm
 
